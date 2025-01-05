@@ -1,0 +1,511 @@
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f9f9f9;
+    color: #333;
+    padding-top: 60px; /* Space for fixed header */
+}
+
+/* Header */
+header {
+    background-color: #333;
+    color: white;
+    padding: 15px 20px;
+    text-align: center;
+    position: fixed; /* Fix header on top */
+    top: 0;
+    width: 100%;
+    z-index: 1000; /* Ensure header is always on top */
+}
+
+header h1 {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+header p {
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+/* Logo Styling */
+.logo {
+    height: 80px; /* Increased logo size */
+    width: auto;
+    position: absolute;
+    top: 10px; /* Adjusted for better alignment */
+    left: 20px;
+}
+
+/* Search Bar Styling */
+#search-bar {
+    width: 80%; /* Increased width for better usability on smaller screens */
+    max-width: 900px; /* Limit width on larger screens */
+    padding: 14px;
+    border: 1px solid #ddd;
+    border-radius: 25px;
+    font-size: 18px;
+    outline: none;
+    transition: all 0.3s ease;
+    margin-top: 15px;
+    margin-left: auto;
+    margin-right: auto; /* Center align the search bar */
+    position: relative;
+    left: 10px; /* Move search bar slightly to the right */
+}
+
+#search-bar:focus {
+    border-color: #ff9900;
+    box-shadow: 0 0 10px rgba(255, 153, 0, 0.5); /* Adding glow on focus */
+}
+
+/* Mobile View Adjustments */
+@media (max-width: 768px) {
+    .logo {
+        height: 90px; /* Larger logo on mobile view */
+    }
+    
+    #search-bar {
+        width: 90%; /* Make the search bar wider on mobile */
+        left: 30px; /* Move search bar more to the right on mobile */
+    }
+}
+
+
+/* Navigation Menu Styling */
+nav {
+    width: 100%;
+    background-color: #333;
+    padding: 15px 0;
+    text-align: center;
+    position: relative; /* Keep it below the logo and search bar */
+    top: 10px; /* Slightly adjust position */
+    z-index: 999; /* Ensure nav is above other content */
+}
+
+/* Horizontal Menu Items for Fashion, Home, Electronics */
+nav ul {
+    display: flex;
+    justify-content: flex-start; /* Align to the left */
+    gap: 15px;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    overflow-x: auto; /* Add horizontal scrolling */
+    white-space: nowrap; /* Prevent wrapping */
+}
+
+nav li {
+    position: relative; /* Ensure dropdown aligns correctly */
+}
+
+nav li a {
+    text-decoration: none; /* Remove underline */
+    color: #fff; /* White text color */
+    font-size: 14px; /* Smaller font size */
+    font-weight: 500; /* Slightly lighter weight */
+    padding: 8px 15px; /* Adjust padding for smaller screens */
+    transition: all 0.3s ease;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+/* Hover Effect for Menu Items */
+nav li a:hover {
+    background-color: #ff9900;
+    color: #fff;
+    transform: scale(1.05);
+}
+
+/* Dropdown Menu Styling */
+nav li .dropdown {
+    display: none;
+    position: absolute;
+    background-color: #333;
+    margin-top: 10px;
+    border-radius: 5px;
+    padding: 8px 0;
+    width: 180px;
+    z-index: 1000; /* Ensure dropdown is above other elements */
+}
+
+/* Show Dropdown on Hover */
+nav li:hover .dropdown {
+    display: block;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Dropdown Link Styling */
+nav li .dropdown a {
+    display: block;
+    color: #fff;
+    padding: 8px 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.2s;
+}
+
+/* Hover Effect for Dropdown Items */
+nav li .dropdown a:hover {
+    background-color: #555;
+    transform: translateX(5px);
+}
+
+/* Optional: Active link styling */
+nav li a.active {
+    background-color: #444;
+    color: white;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .logo {
+        height: 65px;
+        left: 20px;
+    }
+
+    #search-bar {
+        width: 80%;
+        margin-top: 15px;
+    }
+
+    nav ul {
+        flex-direction: row;
+        justify-content: flex-start; /* Align to the left */
+        gap: 15px;
+        overflow-x: auto; /* Enable horizontal scrolling */
+    }
+
+    nav li a {
+        font-size: 12px; /* Smaller font size for mobile */
+        padding: 8px 12px; /* Smaller padding */
+    }
+
+    .dropdown {
+        width: 100%;
+        position: relative;
+        margin-top: 0;
+    }
+}
+
+/* Keyframes for fade-in animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Main Container */
+.container {
+    width: 95%; /* Increase width slightly for better layout */
+    max-width: 1200px; /* Limit maximum width for large screens */
+    margin: 20px auto; /* Centered with spacing */
+}
+
+/* Product Grid */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Adjusted for better responsiveness */
+    gap: 20px; /* Keep space between products */
+    padding: 10px; /* Add some padding for breathing space */
+    justify-items: center; /* Align items centrally */
+    position: relative; /* Ensure grid does not overlap nav */
+    z-index: 1; /* Place below dropdown */
+}
+
+/* Individual Product Card */
+.product {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Slightly larger shadow for better visibility */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for hover effects */
+    text-align: center;
+    width: 100%; /* Full width within the grid */
+    max-width: 300px; /* Limit maximum card width */
+}
+
+.product:hover {
+    transform: translateY(-8px); /* Lift effect on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Add stronger shadow on hover */
+}
+
+/* Product Image */
+.product img {
+    width: 100%;
+    height: 180px; /* Reduce height slightly for better balance */
+    object-fit: cover; /* Ensure images fit nicely */
+    border-bottom: 1px solid #ddd;
+}
+/* Menu Item Link Styling */
+nav li a {
+    text-decoration: none; /* Remove underline */
+    color: #fff; /* White text color */
+    font-size: 16px; /* Reduced font size slightly for responsiveness */
+    font-weight: 500; /* Slightly lighter weight */
+    padding: 8px 15px; /* Adjust padding for better fit on smaller screens */
+    transition: all 0.3s ease; /* Smooth transition for hover */
+    border-radius: 5px; /* Rounded corners for smooth look */
+    display: inline-block; /* Ensure links fit within their parent container */
+}
+
+/* Hover Effect for Menu Items */
+nav li a:hover {
+    background-color: #ff9900; /* Hover color with orange background */
+    color: #fff; /* Text color remains white */
+    transform: scale(1.05); /* Add slight zoom effect on hover */
+}
+
+/* Dropdown Menu Styling */
+nav li .dropdown {
+    display: none; /* Hidden by default */
+    position: absolute; /* Position relative to parent */
+    background-color: #333; /* Dropdown background */
+    margin-top: 10px; /* Space from parent menu item */
+    border-radius: 5px;
+    padding: 8px 0; /* Adjusted padding for cleaner look */
+    width: 180px; /* Fixed width for dropdown */
+    z-index: 1000; /* Ensure dropdown is above other elements */
+}
+
+/* Show Dropdown on Hover */
+nav li:hover .dropdown {
+    display: block; /* Display dropdown on hover */
+    animation: fadeIn 0.3s ease-in-out; /* Smooth fade-in effect */
+}
+
+/* Dropdown Link Styling */
+nav li .dropdown a {
+    display: block;
+    color: #fff;
+    padding: 8px 15px; /* Consistent padding */
+    text-decoration: none;
+    border-radius: 5px; /* Rounded corners for dropdown items */
+    transition: background-color 0.3s ease, transform 0.2s; /* Smooth transitions */
+}
+
+/* Hover Effect for Dropdown Items */
+nav li .dropdown a:hover {
+    background-color: #555; /* Slightly lighter background on hover */
+    transform: translateX(5px); /* Subtle movement to the right */
+}
+
+/* Optional: Active link styling */
+nav li a.active {
+    background-color: #444; /* Slightly different color for active state */
+    color: white;
+}
+
+/* Keyframes for fade-in animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+
+/* Main Container */
+.container {
+    width: 95%; /* Increase width slightly for better layout */
+    max-width: 1200px; /* Limit maximum width for large screens */
+    margin: 110px auto; /* Centered with spacing */
+}
+
+/* Product Grid */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Adjusted for better responsiveness */
+    gap: 30px; /* Keep space between products */
+    padding: 10px; /* Add some padding for breathing space */
+    justify-items: center; /* Align items centrally */
+}
+
+/* Individual Product Card */
+.product {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Slightly larger shadow for better visibility */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for hover effects */
+    text-align: center;
+    width: 100%; /* Full width within the grid */
+    max-width: 300px; /* Limit maximum card width */
+}
+
+.product:hover {
+    transform: translateY(-8px); /* Lift effect on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Add stronger shadow on hover */
+}
+
+/* Product Image */
+.product img {
+    width: 100%;
+    height: 180px; /* Reduce height slightly for better balance */
+    object-fit: cover; /* Ensure images fit nicely */
+    border-bottom: 1px solid #ddd;
+}
+
+/* Product Title */
+.product h3 {
+    font-size: 18px;
+    padding: 10px;
+    color: #333;
+    font-weight: 600; /* Make the title more prominent */
+    text-transform: capitalize; /* Capitalize each word */
+}
+
+/* Product Description */
+.product p {
+    font-size: 14px; /* Slightly smaller for better spacing */
+    color: #666;
+    padding: 0 15px;
+    line-height: 1.5; /* Improve readability */
+}
+
+/* Buy Button */
+.buy-btn {
+    display: inline-block;
+    margin: 15px 0;
+    padding: 10px 20px;
+    background-color: #28a745; /* Green button */
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: all 0.3s ease; /* Smooth transition */
+    cursor: pointer; /* Pointer for clickable button */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for button */
+}
+
+.buy-btn:hover {
+    background-color: #218838; /* Slightly darker green on hover */
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2); /* Add shadow effect */
+    transform: scale(1.05); /* Slight zoom effect */
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .product img {
+        height: 150px; /* Reduce image height for smaller screens */
+    }
+
+    .product h3 {
+        font-size: 16px; /* Adjust title size */
+    }
+
+    .product p {
+        font-size: 12px; /* Adjust description size */
+    }
+
+    .buy-btn {
+        padding: 8px 15px; /* Reduce padding */
+        font-size: 12px; /* Adjust button font size */
+    }
+}
+
+/* Responsive Adjustments for Small Screens */
+@media (max-width: 480px) {
+    .product-grid {
+        grid-template-columns: 1fr; /* Single-column layout for very small screens */
+        gap: 15px; /* Reduce gap */
+        margin-top: 110px; /* Add margin-top to separate from other sections */
+    }
+}
+
+
+    .product {
+        max-width: 100%; /* Full width for small screens */
+    }
+
+
+/* Footer Section Styling */
+footer {
+    background: linear-gradient(145deg, #222, #333); /* Darker gradient for more depth */
+    color: white;
+    padding: 35px 20px; /* Increased padding for better spacing */
+    text-align: center;
+    font-size: 15px; /* Slightly larger font size */
+    margin-top: 30px;
+    margin-bottom: 20px; /* Added bottom margin for better spacing */
+    border-top: 2px solid #555; /* Slight border for a polished look */
+    box-shadow: 0px -3px 12px rgba(0, 0, 0, 0.5); /* Enhanced shadow for depth */
+}
+
+/* Affiliate Disclaimer Text */
+.affiliate-disclaimer {
+    font-size: 14px;
+    color: #ddd; /* Softer grey for contrast */
+    margin-top: 10px;
+    line-height: 1.8; /* Improved line height for readability */
+}
+
+/* Social Media Buttons */
+.social-share {
+    display: flex;
+    justify-content: center;
+    gap: 25px; /* Slightly increased gap for better spacing */
+    margin-top: 30px;
+}
+
+.social-share a {
+    display: inline-block;
+    text-decoration: none; /* Remove underline from links */
+}
+
+/* Styling for Social Media Buttons */
+.social-share button {
+    background: linear-gradient(145deg, #333, #444); /* Dark gradient for buttons */
+    color: white;
+    padding: 16px 30px; /* Slightly bigger padding for buttons */
+    border: 2px solid #555; /* Slight border for buttons */
+    border-radius: 30px; /* Rounded button design */
+    cursor: pointer;
+    font-size: 15px; /* Larger font size */
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.6); /* Soft shadow for lift effect */
+}
+
+/* Hover Effect for Buttons */
+.social-share button:hover {
+    background: linear-gradient(145deg, #444, #555); /* Slightly lighter gradient on hover */
+    color: #eee; /* Softer text color on hover */
+    box-shadow: 0 10px 18px rgba(0, 0, 0, 0.7); /* Enhanced shadow on hover */
+    transform: translateY(-4px); /* Slight lift effect */
+}
+
+/* Active Effect for Buttons */
+.social-share button:active {
+    transform: translateY(1px); /* Pressed button effect */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4); /* Adjusted shadow on active */
+}
+
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .product-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+}
